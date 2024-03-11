@@ -48,3 +48,27 @@ h1 {
     color: crimson;
     transition: all 0.3s ease-in-out;
 }
+
+#todo-input {
+    padding: 5px 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+#add-todo-button {
+    padding: 5px 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#add-todo-button:hover {
+    background-color: #4caf50;
+}
