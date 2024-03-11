@@ -27,6 +27,51 @@ function get_formatted_timestamp() {
 }
 
 /*
+    function update_progress_bar()
+    - updates/modifies progress bar width & percentage based on completion ratio.
+*/
+function update_progress_bar() {
+    const number_completed_tasks = todo_list_container.querySelectorAll(".completed").length;
+    const number_total_tasks = todo_list_container.querySelectorAll("LI").length;
+    /*
+        Check if there are any tasks...
+    */
+    if (number_total_tasks === 0) {
+        /*
+            Set progress to 0 and display default percentage.
+        */
+        const progress = 0;
+        progress_percentage.textContent = `${progress.toFixed(1)}%`;
+        if (progress >= 80) {
+            progress_percentage.style.color = "#4caf50";
+        } else {
+            progress_percentage.style.color = "crimson";
+        }
+    } else {
+        /*
+            Calculate the progress percentage.
+        */
+        const progress = (number_completed_tasks / number_total_tasks) * 100;
+        /*
+            Update the progress bar width.
+        */
+        progress_bar.style.width = `${progress}`;
+        /*
+            Update the progress percentage text and styling.
+        */
+        progress_percentage.textContent = `${progress.toFixed(1)}%`;
+        /*
+            Update the color of the percentage text based on progress.
+        */
+        if (progress >= 80) {
+            progress_percentage.style.color = "#4caf50";
+        } else {
+            progress_percentage.style.color = "crimson";
+        }
+    }
+}
+
+/*
     Add an event listener to the add_todo_button.
 */
 add_todo_button.addEventListener("click", function() {
