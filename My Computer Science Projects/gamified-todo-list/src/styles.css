@@ -71,4 +71,34 @@ button i {
 
 #add-todo-button:hover {
     background-color: #4caf50;
+    border-color: #1a1a1a;
+}
+
+#clear-all-todos-button {
+    padding: 5px 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#clear-all-todos-button:hover {
+    background-color: crimson;
+    border-color: #1a1a1a;
+}
+
+#todo-list-container li {
+    cursor: default;
+    margin-top: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: crimson;
+    opacity: 0.5;
+    background-color: #dddddd;
+    font-style: italic;
+    font-weight: normal;
 }
