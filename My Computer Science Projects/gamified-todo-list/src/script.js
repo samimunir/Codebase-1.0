@@ -65,3 +65,29 @@ add_todo_button.addEventListener("click", function() {
     */
     todo_input.value = "";
 });
+
+/*
+    Add an event listener to the clear_all_todos_button.
+*/
+clear_all_todos_button.addEventListener("click", function() {
+    /*
+        Confirm with the user before clearing all tasks.
+    */
+    if (confirm("Are you sure you want to clear all tasks?")) {
+        /*
+            Remove all todo list items from the todo-list-container.
+        */
+        const todo_items = todo_list_container.querySelectorAll("LI");
+        /*
+            Loop through each list item and remove it.
+        */
+        for (let i = 0; i < todo_items.length; i++) {
+            todo_list_container.removeChild(todo_items[i]);
+        }
+        /*
+            Reset the progress bar & percentage with width & value to 0%.
+        */
+        progress_bar.style.width = "0%";
+        update_progress_bar();
+    }
+});
