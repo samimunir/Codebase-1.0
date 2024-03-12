@@ -31,6 +31,24 @@ function addTask() {
         const newTaskItem = document.createElement("LI");
         newTaskItem.textContent = newTaskValue;
         /*
+            Create a button element for deleting the task.
+        */
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        /*
+            Add a click event listener to the delete button.
+        */
+        deleteButton.addEventListener("click", function() {
+            /*
+                Remove the task list item from the parent element (task list).
+            */
+            this.parentNode.remove();
+        });
+        /*
+            Append the delete butotn to the new list item.
+        */
+        newTaskItem.appendChild(deleteButton);
+        /*
             Optional: add functionality for marking tasks as complete.
             - e.g. --> checkbox
         */
