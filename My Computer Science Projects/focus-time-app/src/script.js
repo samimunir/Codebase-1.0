@@ -114,3 +114,20 @@ function updateTimerDisplay() {
     document.getElementById("timer-minutes").textContent = minutes;
     document.getElementById("timer-seconds").textContent = formattedSeconds;
 }
+
+function startTimer() {
+    if (!isTimerRunning) {
+        isTimerRunning = true;
+        document.getElementById("start-timer-button").disabled = true;
+        document.getElementById("stop-timer-button").disabled = false;
+        timerInterval = setInterval(() => {
+            remainingTime--;
+            updateTimerDisplay();
+            if (remainingTime === 0) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                // add logic for timer completion (e.g., play sound, alert)
+            }
+        }, 1000); // update timer every second.
+    }
+}
