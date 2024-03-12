@@ -53,6 +53,24 @@ function addTask() {
             - e.g. --> checkbox
         */
         /*
+            Create a checkbox element for marking the task as complete.
+        */
+        const taskCheckbox = document.createElement("input");
+        taskCheckbox.type = "checkbox";
+        /*
+            Add a click event listener to the checkbox.
+        */
+        taskCheckbox.addEventListener("change", function() {
+            /*
+                Toggle the style of the list item to indicate completion (e.g., strikethrough).
+            */
+            this.parentNode.classList.toggle("completed");
+        });
+        /*
+            Append the checkbox to the new list item.
+        */
+        newTaskItem.appendChild(taskCheckbox);
+        /*
             Add the new task item to the task list.
         */
         taskList.appendChild(newTaskItem);
