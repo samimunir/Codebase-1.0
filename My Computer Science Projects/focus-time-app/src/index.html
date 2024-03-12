@@ -15,7 +15,16 @@
                 <input type="text" id="new-task" placeholder="Add a new task">
                 <button id="add-task-button">Add Task</button>
             </div>
-            <div class="pomodoro-timer"></div>
+            <div class="pomodoro-timer">
+                <h2>Pomodoro timer</h2>
+                <div class="timer-display">
+                    <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+                </div>
+                <div class="timer-controls">
+                    <button id="start-timer-button">Start</button>
+                    <button id="stop-timer-button" disabled>Stop</button>
+                </div>
+            </div>
             <div class="time-blocking"></div>
         </div>
         <script src="script.js"></script>
