@@ -1,4 +1,21 @@
 /*
+    Declaring global variables.
+    - used to control the state of the timer and keep track of the remaining time.
+*/
+/*
+    flag to track if the timer is currently running.
+*/
+let isTimerRunning = false;
+/*
+    variable to store the interval ID for the timer.
+*/
+let timerInterval;
+/*
+    initial remaining time in seconds (25 minutes)
+*/
+let remainingTime = 25 * 60;
+
+/*
     Select the task list element.
 */
 const taskList = document.getElementById("task-list-items");
@@ -85,3 +102,15 @@ function addTask() {
     Add click event listener to the addTaskButton.
 */
 addTaskButton.addEventListener("click", addTask);
+
+/*
+    Function to update the timer display.
+*/
+function updateTimerDisplay() {
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    // Format the time string with leading zeros for seconds.
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+    document.getElementById("timer-minutes").textContent = minutes;
+    document.getElementById("timer-seconds").textContent = formattedSeconds;
+}
