@@ -104,6 +104,18 @@ function addTask() {
 addTaskButton.addEventListener("click", addTask);
 
 /*
+    Select the button for the start timer & add event listener
+*/
+const startTimerButton = document.getElementById("start-timer-button");
+startTimerButton.addEventListener("click", startTimer);
+
+/*
+    Select the button for the start timer & add event listener
+*/
+const stopTimerButton = document.getElementById("stop-timer-button");
+stopTimerButton.addEventListener("click", stopTimer);
+
+/*
     Function to update the timer display.
 */
 function updateTimerDisplay() {
@@ -129,5 +141,14 @@ function startTimer() {
                 // add logic for timer completion (e.g., play sound, alert)
             }
         }, 1000); // update timer every second.
+    }
+}
+
+function stopTimer() {
+    if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        document.getElementById("start-timer-button").disabled = false;
+        document.getElementById("stop-timer-button").disabled = true;
     }
 }
