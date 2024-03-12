@@ -97,6 +97,7 @@ button i {
 }
 
 #todo-list-container li {
+    color: #ffffff;
     cursor: default;
     margin-top: 5px;
     font-weight: bold;
@@ -114,7 +115,7 @@ button i {
     text-decoration: line-through;
     color: crimson;
     opacity: 0.5;
-    background-color: #dddddd;
+    /* background-color: #dddddd; */
     font-style: italic;
     font-weight: normal;
 }
