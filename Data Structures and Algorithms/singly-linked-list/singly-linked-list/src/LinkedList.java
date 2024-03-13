@@ -28,4 +28,10 @@ public class LinkedList {
             System.out.print("NULL");
         }
     }
+
+    public void printDataStructureStats() {
+        printLinkedList();
+        System.out.println("\tnumberOfElements: " + this.numberOfElements);
+        System.out.println("\tpointer: " + pointer);
+    }
 }
