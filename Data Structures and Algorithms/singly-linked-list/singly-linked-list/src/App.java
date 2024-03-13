@@ -4,5 +4,6 @@ public class App {
         System.out.println("------------------");
 
         LinkedList singlyLinkedList = new LinkedList();
+        singlyLinkedList.printDataStructureStats();
     }
 }
