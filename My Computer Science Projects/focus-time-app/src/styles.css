@@ -36,6 +36,8 @@ body {
 .time-blocking .task-cell {
     background-color: #ffffff;
     cursor: pointer;
+    width: 100px;
+    height: 10px;
 }
 
 .time-blocking .task-cell:hover {
