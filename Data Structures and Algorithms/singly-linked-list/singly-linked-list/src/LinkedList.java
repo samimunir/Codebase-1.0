@@ -6,12 +6,26 @@ public class LinkedList {
     public LinkedList() {
         System.out.println("singly-linked-list initialization successful.");
     }
-
-    public boolean isEmpty() {
+    
+    private boolean isEmpty() {
         if (this.head == null) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void printLinkedList() {
+        if (isEmpty()) {
+            System.out.println("HEAD -> NULL");
+        } else {
+            Node currentNode = this.head;
+            System.out.print("HEAD -> ");
+            while (currentNode != null) {
+                System.out.print(currentNode.getData() + " -> ");
+                currentNode = currentNode.getNext();
+            }
+            System.out.print("NULL");
         }
     }
 }
