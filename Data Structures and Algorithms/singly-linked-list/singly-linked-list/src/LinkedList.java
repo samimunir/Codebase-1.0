@@ -96,4 +96,29 @@ public class LinkedList {
         }
         printDataStructureStats();
     }
+
+    public void removeFromTail() {
+        if (isEmpty()) {
+            System.out.println("\nremoveFromTail() called...\n\t--<ERROR>-- cannot remove from empty linked list.");
+        } else {
+            System.out.println("\nremoveFromTail() called...");
+            if (this.head.getNext() == null) {
+                this.head = null;
+                this.numberOfElements--;
+                this.pointer--;
+            } else {
+                Node currentNode = this.head;
+                while (currentNode != null) {
+                    if (currentNode.getNext().getNext() == null) {
+                        break;
+                    }
+                    currentNode = currentNode.getNext();
+                }
+                currentNode.setNext(null);
+                this.numberOfElements--;
+                this.pointer--;
+            }
+        }
+        printDataStructureStats();
+    }
 }
