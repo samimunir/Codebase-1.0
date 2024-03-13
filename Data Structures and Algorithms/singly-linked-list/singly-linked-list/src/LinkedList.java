@@ -17,15 +17,15 @@ public class LinkedList {
 
     public void printLinkedList() {
         if (isEmpty()) {
-            System.out.println("HEAD -> NULL");
+            System.out.println("\tHEAD -> NULL");
         } else {
             Node currentNode = this.head;
-            System.out.print("HEAD -> ");
+            System.out.print("\tHEAD -> ");
             while (currentNode != null) {
                 System.out.print(currentNode.getData() + " -> ");
                 currentNode = currentNode.getNext();
             }
-            System.out.print("NULL");
+            System.out.println("NULL");
         }
     }
 
@@ -33,5 +33,20 @@ public class LinkedList {
         printLinkedList();
         System.out.println("\tnumberOfElements: " + this.numberOfElements);
         System.out.println("\tpointer: " + pointer);
+    }
+
+    public void insertAtHead(int data) {
+        System.out.println("\ninsertAtHead(" + data + ") called...");
+        if (isEmpty()) {
+            this.head = new Node(data);
+            this.numberOfElements++;
+            this.pointer++;
+        } else {
+            Node newHeadNode = new Node(data, this.head);
+            this.head = newHeadNode;
+            this.numberOfElements++;
+            this.pointer++;
+        }
+        printDataStructureStats();
     }
 }
