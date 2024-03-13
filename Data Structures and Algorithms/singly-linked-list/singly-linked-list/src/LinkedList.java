@@ -49,4 +49,22 @@ public class LinkedList {
         }
         printDataStructureStats();
     }
+
+    public void removeFromHead() {
+        if (isEmpty()) {
+            System.out.println("\nremoveFromHead() called...\n\t--<ERROR>-- cannot remove from empty linked list.");
+        } else {
+            System.out.println("\nremoveFromHead(" + this.head.getData() + ") called...");
+            if (this.head.getNext() == null) {
+                this.head = null;
+                this.numberOfElements--;
+                this.pointer--;
+            } else {
+                this.head = this.head.getNext();
+                this.numberOfElements--;
+                this.pointer--;
+            }
+        }
+        printDataStructureStats();
+    }
 }
