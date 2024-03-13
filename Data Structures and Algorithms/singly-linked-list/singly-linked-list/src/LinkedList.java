@@ -67,4 +67,33 @@ public class LinkedList {
         }
         printDataStructureStats();
     }
+
+    public void insertAtTail(int data) {
+        System.out.println("\ninsertAtTail(" + data + ") called...");
+        if (isEmpty()) {
+            this.head = new Node(data);
+            this.numberOfElements++;
+            this.pointer++;
+        } else {
+            if (this.head.getNext() == null) {
+                Node newTailNode = new Node(data);
+                this.head.setNext(newTailNode);
+                this.numberOfElements++;
+                this.pointer++;
+            } else {
+                Node newTailNode = new Node(data);
+                Node currentNode = this.head;
+                while (currentNode != null) {
+                    if (currentNode.getNext() == null) {
+                        break;
+                    }
+                    currentNode = currentNode.getNext();
+                }
+                currentNode.setNext(newTailNode);
+                this.numberOfElements++;
+                this.pointer++;
+            }
+        }
+        printDataStructureStats();
+    }
 }

@@ -21,5 +21,11 @@ public class App {
         singlyLinkedList.removeFromHead();
         singlyLinkedList.removeFromHead();
         singlyLinkedList.removeFromHead(); // return error expected (removing from empty/null linkedlist)
+        /*
+         * Testing function insertAtTail()
+         */
+        singlyLinkedList.insertAtTail(2);
+        singlyLinkedList.insertAtTail(11);
+        singlyLinkedList.insertAtTail(7);
     }
 }
