@@ -189,3 +189,19 @@ function scheduleTask(timeBlockCell, taskDescription) {
     */
     timeBlockCell.textContent = taskDescription;
 }
+
+/*
+    Populating the table with time blocks.
+    - call the createTimeBlock function for each time slot and day 
+        combination in the desired schedule.
+    - loop through time slots and weekdays to create the table
+        dynamically.
+*/
+for (let hour = 9; hour < 18; hour++) {
+    const time = `${hour}:00`;
+    createTimeBlock(time, "Monday");
+    createTimeBlock(time, "Tuesday");
+    createTimeBlock(time, "Wednesday");
+    createTimeBlock(time, "Thursday");
+    createTimeBlock(time, "Friday");
+}
