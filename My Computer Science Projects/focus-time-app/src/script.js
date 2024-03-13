@@ -127,6 +127,9 @@ function updateTimerDisplay() {
     document.getElementById("timer-seconds").textContent = formattedSeconds;
 }
 
+/*
+    Function to start the timer.
+*/
 function startTimer() {
     if (!isTimerRunning) {
         isTimerRunning = true;
@@ -144,6 +147,9 @@ function startTimer() {
     }
 }
 
+/*
+    Function to stop the timer.
+*/
 function stopTimer() {
     if (isTimerRunning) {
         clearInterval(timerInterval);
@@ -151,4 +157,35 @@ function stopTimer() {
         document.getElementById("start-timer-button").disabled = false;
         document.getElementById("stop-timer-button").disabled = true;
     }
+}
+
+/*
+    Function createTimeBlock()
+*/
+function createTimeBlock(time, day) {
+    const tableBody = document.getElementById("time-blocking").getElementsByTagName("tbody")[0];
+    const newRow = document.createElement("TR");
+    const timeCell = document.createElement("TD");
+    timeCell.textContent = time;
+    const taskCell = document.createElement("TD");
+    taskCell.textContent = ""; // initially empty.
+    taskCell.addEventListener("click", function() {
+        /*
+            Handle click event to allow scheduling tasks.
+            - e.g., prompt for task details.
+        */
+    });
+    newRow.appendChild(timeCell);
+    newRow.appendChild(taskCell);
+    tableBody.appendChild(newRow);
+}
+
+/*
+    Function scheduleTask()
+*/
+function scheduleTask(timeBlockCell, taskDescription) {
+    /*
+        Update the content of the cell to display the task description.
+    */
+    timeBlockCell.textContent = taskDescription;
 }
