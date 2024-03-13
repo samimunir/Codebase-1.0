@@ -6,4 +6,12 @@ public class LinkedList {
     public LinkedList() {
         System.out.println("singly-linked-list initialization successful.");
     }
+
+    public boolean isEmpty() {
+        if (this.head == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
