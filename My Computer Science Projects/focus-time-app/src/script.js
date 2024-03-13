@@ -162,23 +162,40 @@ function stopTimer() {
 /*
     Function createTimeBlock()
 */
-function createTimeBlock(time, day) {
-    const tableBody = document.getElementById("time-blocking").getElementsByTagName("tbody")[0];
-    const newRow = document.createElement("TR");
-    const timeCell = document.createElement("TD");
+function createTimeBlock(time) {
+    const tableBody = document.getElementsByClassName("time-blocking")[0].getElementsByTagName("tbody")[0];
+    const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  
+    // Create a single time cell outside the weekday loop
+    const timeCell = document.createElement("td");
+    timeCell.classList.add('time-cell'); // Apply CSS class
     timeCell.textContent = time;
-    const taskCell = document.createElement("TD");
-    taskCell.textContent = ""; // initially empty.
-    taskCell.addEventListener("click", function() {
-        /*
-            Handle click event to allow scheduling tasks.
-            - e.g., prompt for task details.
-        */
-    });
-    newRow.appendChild(timeCell);
-    newRow.appendChild(taskCell);
+  
+    // Create a single row for each time slot
+    const newRow = document.createElement("tr");
+  
+    for (const day of weekdays) {
+      const taskCell = document.createElement("td");
+      taskCell.classList.add('task-cell'); // Apply CSS class
+      taskCell.textContent = ""; // Initially empty
+  
+      // Attach click event listener to the task cell
+      taskCell.addEventListener('click', function() {
+          const taskDescription = prompt("Enter task description:");
+          if (taskDescription) {
+              scheduleTask(taskCell, taskDescription);
+          }
+      });
+  
+      newRow.appendChild(taskCell);
+    }
+  
+    // Prepend the time cell to the new row before appending the row
+    newRow.prepend(timeCell);
+  
+    // Append the completed row (with time cell prepended) to the table body
     tableBody.appendChild(newRow);
-}
+  }
 
 /*
     Function scheduleTask()
@@ -199,9 +216,5 @@ function scheduleTask(timeBlockCell, taskDescription) {
 */
 for (let hour = 9; hour < 18; hour++) {
     const time = `${hour}:00`;
-    createTimeBlock(time, "Monday");
-    createTimeBlock(time, "Tuesday");
-    createTimeBlock(time, "Wednesday");
-    createTimeBlock(time, "Thursday");
-    createTimeBlock(time, "Friday");
+    createTimeBlock(time);
 }

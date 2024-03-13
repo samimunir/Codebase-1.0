@@ -18,3 +18,26 @@ body {
     text-decoration: line-through;
     color: #999999;
 }
+
+.time-blocking table {
+    border-collapse: collapse;
+}
+
+.time-blocking .time-cell, .time-blocking .task-cell {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.time-blocking .time-cell {
+    font-weight: bold;
+    background-color: #eeeeee;
+}
+
+.time-blocking .task-cell {
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.time-blocking .task-cell:hover {
+    background-color: #f5f5f5;
+}
