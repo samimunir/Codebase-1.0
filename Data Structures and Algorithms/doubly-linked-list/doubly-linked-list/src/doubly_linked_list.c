@@ -77,6 +77,8 @@ void insert_at_head(int data) {
     print_data_structure_stats();
 }
 
+void remove_from_head() {}
+
 int main(int argc, char* argv[]) {
     printf("doubly-linked-list\n------------------\n");
     /*
