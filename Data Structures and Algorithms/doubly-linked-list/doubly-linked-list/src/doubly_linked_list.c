@@ -22,7 +22,7 @@ bool is_empty() {
     }
 }
 
-void printLinkedList() {
+void print_linked_list() {
     if (is_empty()) {
         printf("\tHEAD <-> NULL\n");
     } else {
@@ -36,12 +36,22 @@ void printLinkedList() {
     }
 }
 
+void print_data_structure_stats() {
+    print_linked_list();
+    printf("\tnumber_of_elements: %d\n", number_of_elements);
+    printf("\tpointer: %d\n", pointer);
+}
+
 int main(int argc, char* argv[]) {
     printf("doubly-linked-list\n------------------\n");
     /*
         Testing function printLinkedList()
     */
-    printLinkedList();
-    
+    print_linked_list();
+    /*
+        Testing function print_data_structure_stats()
+    */
+    print_data_structure_stats();
+
     return EXIT_SUCCESS;
 }
