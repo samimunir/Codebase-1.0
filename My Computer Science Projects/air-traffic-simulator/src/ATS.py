@@ -42,18 +42,20 @@ pygame.display.flip()
 import random
 
 class Aircraft:
-    def __init__(self, position, speed, type, flight_number):
+    def __init__(self, position, speed, type, flight_number, route):
         self.position = position
         self.speed = speed
         self.type = type
         self.flight_number = flight_number
+        self.route = route
 
 def spawn_aircraft(waypoints):
     spawn_point = random.choice(waypoints)
     speed = random.randint(1, 5)
     aircraft_type = random.choice(["Cessna", "Boeing", "Airbus"])
     flight_number = random.randint(100, 999)
-    new_aircraft = Aircraft(spawn_point, speed, aircraft_type, flight_number)
+    new_aircraft = Aircraft(spawn_point, speed, aircraft_type, flight_number, [])
+    new_aircraft.route = generate_route(waypoints, spawn_point)
     return new_aircraft
 
 def generate_route(waypoints, spawn_point):
@@ -67,3 +69,21 @@ def generate_route(waypoints, spawn_point):
     intermediate_waypoints = random.sample(available_waypoints, num_waypoints)
     route = [start_point] + intermediate_waypoints + [end_point]
     return route
+
+import math
+def distance(point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+def move_aircraft(aircraft, dt):
+    next_waypoint = aircraft.route[0]
+    direction_vector = (next_waypoint[0] - aircraft.position[0], next_waypoint[1] - aircraft.position[1])
+    magnitude = math.sqrt(sum(value ** 2 for value in direction_vector))
+    if magnitude > 0:
+        direction_vector = tuple(v / magnitude for v in direction_vector)
+    movement = tuple(d * aircraft.speed * dt for d in direction_vector)
+    aircraft.position = (aircraft.position[0] + movement[0], aircraft.position[1] + movement[1])
+    # Check if waypoint is reached (adjust threshold based on your scale).
+    if distance(aircraft.position, aircraft.route[0]) < 5:
+        aircraft.route.pop(0)
