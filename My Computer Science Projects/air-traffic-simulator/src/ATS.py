@@ -55,3 +55,15 @@ def spawn_aircraft(waypoints):
     flight_number = random.randint(100, 999)
     new_aircraft = Aircraft(spawn_point, speed, aircraft_type, flight_number)
     return new_aircraft
+
+def generate_route(waypoints, spawn_point):
+    available_waypoints = waypoints.copy()
+    available_waypoints.remove(spawn_point)
+    start_point = random.choice(available_waypoints)
+    end_point = random.choice(available_waypoints)
+    while start_point == end_point:
+        end_point = random.choice(available_waypoints)
+    num_waypoints = random.randint(1, 3)
+    intermediate_waypoints = random.sample(available_waypoints, num_waypoints)
+    route = [start_point] + intermediate_waypoints + [end_point]
+    return route
