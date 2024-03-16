@@ -10,24 +10,24 @@ waypoints = [(100, 50), (250, 150), (400, 100), (550, 200)]
 #   - initializing pygame and setting the window size.
 #
 import pygame
-pygame.init()
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+# pygame.init()
+# screen_width = 800
+# screen_height = 600
+# screen = pygame.display.set_mode((screen_width, screen_height))
 
 #
 #   Drawing waypoints as circles on the map.
 #   - loop through each waypoint.
 #
-for waypoint in waypoints:
-    # Set the circle color to blue.
-    color = (0, 0, 255)
-    # Set the circle radius to 5px
-    radius = 5
-    # Draw the circle to represent the waypoint onto the map.
-    pygame.draw.circle(screen, color, waypoint, radius)
-# Update the entire screen after drawing all waypoints.
-pygame.display.flip()
+# for waypoint in waypoints:
+#     # Set the circle color to blue.
+#     color = (0, 0, 255)
+#     # Set the circle radius to 5px
+#     radius = 5
+#     # Draw the circle to represent the waypoint onto the map.
+#     pygame.draw.circle(screen, color, waypoint, radius)
+# # Update the entire screen after drawing all waypoints.
+# pygame.display.flip()
 
 #
 #   Defining Aircraft class to represent individual aircrafts in the
@@ -51,7 +51,7 @@ class Aircraft:
 
 def spawn_aircraft(waypoints):
     spawn_point = random.choice(waypoints)
-    speed = random.randint(1, 5)
+    speed = random.randint(10, 20)
     aircraft_type = random.choice(["Cessna", "Boeing", "Airbus"])
     flight_number = random.randint(100, 999)
     new_aircraft = Aircraft(spawn_point, speed, aircraft_type, flight_number, [])
@@ -87,3 +87,47 @@ def move_aircraft(aircraft, dt):
     # Check if waypoint is reached (adjust threshold based on your scale).
     if distance(aircraft.position, aircraft.route[0]) < 5:
         aircraft.route.pop(0)
+
+aircraft_colors = {"Cessna": (255, 255, 255), "Boeing": (0, 255, 0), "Airbus": (255, 0, 0)}
+
+def draw_aircraft(screen, aircraft):
+    color = aircraft_colors.get(aircraft.type, (255, 255, 255)) # Default white if type not found
+    radius = 5
+    pygame.draw.circle(screen, color, aircraft.position, radius)
+
+def main():
+    pygame.init()
+    screen_width = 800
+    screen_height = 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    clock = pygame.time.Clock()
+    aircraft_list = []
+    for _ in range(3):
+        new_aircraft = spawn_aircraft(waypoints)
+        aircraft_list.append(new_aircraft)
+    
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        screen.fill((0, 0, 0))
+        for aircraft in aircraft_list:
+            dt = clock.tick(120) / 1000.0
+            move_aircraft(aircraft, dt)
+            draw_aircraft(screen, aircraft)
+        for waypoint in waypoints:
+            # Set the circle color to blue.
+            color = (0, 0, 255)
+            # Set the circle radius to 5px
+            radius = 10
+            # Draw the circle to represent the waypoint onto the map.
+            pygame.draw.circle(screen, color, waypoint, radius)
+        # Update the entire screen after drawing all waypoints.
+        pygame.display.flip()
+        # Control animation speed (optional)
+        clock.tick(120) # update 60 times per second.
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
