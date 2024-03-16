@@ -11,3 +11,6 @@ waypoints = [(100, 50), (250, 150), (400, 100), (550, 200)]
 #
 import pygame
 pygame.init()
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
