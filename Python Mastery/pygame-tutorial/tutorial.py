@@ -18,7 +18,7 @@ while RUNNING:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             RUNNING = False
-    KEYS = pygame.key.get_pressed()
+    KEYS = pygame.key.get_pressed() # list of pygame key events
     if KEYS[pygame.K_LEFT]:
         x -= velocity
     if KEYS[pygame.K_RIGHT]:
@@ -27,6 +27,7 @@ while RUNNING:
         y -= velocity
     if KEYS[pygame.K_DOWN]:
         y += velocity
+    WINDOW.fill((0, 0, 0))
     pygame.draw.rect(WINDOW, (255, 0, 0), (x, y, width, height))
     pygame.display.update()
 
