@@ -34,5 +34,14 @@ public class App {
         singlyLinkedList.removeFromTail();
         singlyLinkedList.removeFromTail();
         singlyLinkedList.removeFromTail(); // return error expected (removing from empty/null linkedlist)
+
+        /*
+         * Testing function doesContainData()
+         */
+        singlyLinkedList.insertAtHead(2);
+        singlyLinkedList.insertAtTail(11);
+        singlyLinkedList.insertAtHead(7);
+        singlyLinkedList.insertAtTail(56);
+        singlyLinkedList.doesContainData(11);
     }
 }

@@ -121,4 +121,20 @@ public class LinkedList {
         }
         printDataStructureStats();
     }
+
+    public void doesContainData(int data) {
+        if (isEmpty()) {
+            System.out.println("\ndoesContainData(" + data + ") called...\n\t--<ERROR>-- cannot search for data from empty linked list.");
+            return;
+        }
+        int nodeNumber = 1;
+        Node currentNode = this.head;
+        while (currentNode != null) {
+            if (currentNode.getData() == data) {
+                System.out.println("\ndoesContainData(" + data + ") called...\n\t" + data + " found at node #" + nodeNumber + ".");
+            }
+            currentNode = currentNode.getNext();
+            nodeNumber++;
+        }
+    }
 }
