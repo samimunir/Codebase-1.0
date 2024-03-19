@@ -124,7 +124,7 @@ public class LinkedList {
 
     public void doesContainData(int data) {
         if (isEmpty()) {
-            System.out.println("\ndoesContainData(" + data + ") called...\n\t--<ERROR>-- cannot search for data from empty linked list.");
+            System.out.println("\ndoesContainData(" + data + ") called...\n\t--<ERROR>-- cannot search for data in empty linked list.");
             return;
         }
         int nodeNumber = 1;
@@ -136,5 +136,24 @@ public class LinkedList {
             currentNode = currentNode.getNext();
             nodeNumber++;
         }
+    }
+
+    public void replaceDataAtNode(int nodeNumber, int data) {
+        if (isEmpty()) {
+            System.out.println("\nreplaceDataAtNode(" + nodeNumber + ", " + data + ") called...\n\t--<ERROR>-- cannot replace data in empty linked list.");
+            printDataStructureStats();
+            return;
+        }
+        int counter = 1;
+        Node currentNode = this.head;
+        while (currentNode != null) {
+            if (counter == nodeNumber) {
+                currentNode.setData(data);
+            }
+            currentNode = currentNode.getNext();
+            counter++;
+        }
+        System.out.println("\nreplaceDataAtNode(" + nodeNumber + ", " + data + ") called...");
+        printDataStructureStats();
     }
 }

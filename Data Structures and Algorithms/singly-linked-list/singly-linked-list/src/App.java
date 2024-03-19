@@ -43,5 +43,10 @@ public class App {
         singlyLinkedList.insertAtHead(7);
         singlyLinkedList.insertAtTail(56);
         singlyLinkedList.doesContainData(11);
+
+        /*
+         * Testing function replaceDataAtNode()
+         */
+        singlyLinkedList.replaceDataAtNode(3, 22);
     }
 }
