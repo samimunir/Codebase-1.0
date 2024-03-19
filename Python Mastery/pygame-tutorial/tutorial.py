@@ -5,7 +5,7 @@ pygame.init()
 WINDOW = pygame.display.set_mode((500, 500))
 # Give the window a title
 pygame.display.set_caption("pygame tutorial")
-# Setting up position for character
+# Setting up position for character (top-left of window is (0, 0) --> (0 + x, 0 + y))
 x = 50
 y = 50
 width = 40
@@ -18,4 +18,16 @@ while RUNNING:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             RUNNING = False
+    KEYS = pygame.key.get_pressed()
+    if KEYS[pygame.K_LEFT]:
+        x -= velocity
+    if KEYS[pygame.K_RIGHT]:
+        x += velocity
+    if KEYS[pygame.K_UP]:
+        y -= velocity
+    if KEYS[pygame.K_DOWN]:
+        y += velocity
+    pygame.draw.rect(WINDOW, (255, 0, 0), (x, y, width, height))
+    pygame.display.update()
+
 pygame.quit()
