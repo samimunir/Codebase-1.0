@@ -22,7 +22,11 @@ int main(int argc, char* argv[]) {
     /*
         TESTING function insert_head(struct static_array *array, int data)
     */
-    array = insert_head(array, 2);
+    array = insert_head(array, 2); // case 1
+    array = insert_head(array, 11); // case 2
+    array = insert_head(array, 7); // case 3
+    array = insert_head(array, 63); // case 3...
+    array = insert_head(array, -1); // error
 
     return EXIT_SUCCESS;
 }

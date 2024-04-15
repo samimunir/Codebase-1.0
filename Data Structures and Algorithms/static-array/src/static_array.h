@@ -6,6 +6,7 @@ struct static_array {
     int memory;
     int used_memory;
     int available_memory;
+    float payload;
 };
 
 struct static_array * init_static_array(int capacity);

@@ -17,11 +17,13 @@ void print_static_array_struct(struct static_array *array) {
     } else {
         printf("\tstatic_array: ");
         print_static_array(array -> array, array -> capacity);
+        printf("\tpointer: %d\n", array -> pointer);
         printf("\tcapacity: %d\n", array -> capacity);
         printf("\t# elements: %d\n", array -> number_of_elements);
         printf("\ttotal memory: %d bytes\n", array -> memory);
         printf("\tused memory: %d bytes\n", array -> used_memory);
         printf("\tavail memory: %d bytes\n", array -> available_memory);
+        printf("\tpayload: %.2f\n", array -> payload);
     }
 }
 
@@ -43,6 +45,7 @@ struct static_array * init_static_array(int capacity) {
             array -> memory = capacity * sizeof(int);
             array -> used_memory = 0;
             array -> available_memory = array -> memory - array -> used_memory;
+            array -> payload = (float) array -> used_memory / (float) array -> memory;
             printf("\tSUCCESS: static_array initialized with capacity[%d].\n", capacity);
             print_static_array_struct(array);
             return array;
@@ -59,6 +62,33 @@ struct static_array * insert_head(struct static_array *array, int data) {
         array -> used_memory = array -> number_of_elements * sizeof(int);
         array -> memory = array -> capacity * sizeof(int);
         array -> available_memory = array -> memory - array -> used_memory;
+        array -> payload = (float) array -> used_memory / (float) array -> memory;
+    } else {
+        if (array -> pointer + 1 == array -> capacity) {
+            printf("--<ERROR>-- static_array at full capacity [%d], cannot insert at head.\n", array -> capacity);
+        } else {
+            if (array -> pointer == 0) {
+                array -> pointer++;
+                array -> array[array -> pointer] = array -> array[0];
+                array -> array[0] = data;
+                array -> number_of_elements++;
+                array -> used_memory = array -> number_of_elements * sizeof(int);
+                array -> memory = array -> capacity * sizeof(int);
+                array -> available_memory = array -> memory - array -> used_memory;
+                array -> payload = (float) array -> used_memory / (float) array -> memory;
+            } else {
+                array -> pointer++;
+                for (int i = array -> pointer; i >= 0; i--) {
+                    array -> array[i + 1] = array -> array[i];
+                }
+                array -> array[0] = data;
+                array -> number_of_elements++;
+                array -> used_memory = array -> number_of_elements * sizeof(int);
+                array -> memory = array -> capacity * sizeof(int);
+                array -> available_memory = array -> memory - array -> used_memory;
+                array -> payload = (float) array -> used_memory / (float) array -> memory;
+            }
+        }
     }
     print_static_array_struct(array);
     return array;
