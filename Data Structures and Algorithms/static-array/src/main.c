@@ -33,5 +33,14 @@ int main(int argc, char* argv[]) {
     */
     array = clear_static_array(array);
 
+    /*
+        TESTING function insert_tail(struct static_array *array, int data)
+    */
+    array = insert_tail(array, 2); // case 1
+    array = insert_tail(array, 11); // case 2
+    array = insert_tail(array, 7); // case 2...
+    array = insert_tail(array, 63);
+    array = insert_tail(array, -1); // error
+
     return EXIT_SUCCESS;
 }

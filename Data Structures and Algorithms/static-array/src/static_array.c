@@ -107,3 +107,30 @@ struct static_array * insert_head(struct static_array *array, int data) {
     print_static_array_struct(array);
     return array;
 }
+
+struct static_array * insert_tail(struct static_array *array, int data) {
+    printf("\ninsert_tail(%d) called -->\n", data);
+    if (array -> pointer == -1) {
+        array -> pointer++;
+        array -> array[0] = data;
+        array -> number_of_elements++;
+        array -> used_memory = array -> number_of_elements * sizeof(int);
+        array -> memory = array -> capacity * sizeof(int);
+        array -> available_memory = array -> memory - array -> used_memory;
+        array -> payload = (float) array -> used_memory / (float) array -> memory;
+    } else {
+        if (array -> pointer + 1 == array -> capacity) {
+            printf("--<ERROR>-- static_array at full capacity [%d], cannot insert at tail.\n", array -> capacity);
+        } else {
+            array -> pointer++;
+            array -> array[array -> pointer] = data;
+            array -> number_of_elements++;
+            array -> used_memory = array -> number_of_elements * sizeof(int);
+            array -> memory = array -> capacity * sizeof(int);
+            array -> available_memory = array -> memory - array -> used_memory;
+            array -> payload = (float) array -> used_memory / (float) array -> memory;
+        }
+    }
+    print_static_array_struct(array);
+    return array;
+}
