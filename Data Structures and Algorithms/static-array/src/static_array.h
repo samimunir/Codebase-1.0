@@ -1,4 +1,4 @@
-typedef struct static_array {
+struct static_array {
     int *array;
     int capacity;
     int number_of_elements;
