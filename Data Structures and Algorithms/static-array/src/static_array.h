@@ -1,5 +1,6 @@
 struct static_array {
     int *array;
+    int pointer;
     int capacity;
     int number_of_elements;
     int memory;
