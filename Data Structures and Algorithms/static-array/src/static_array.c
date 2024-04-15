@@ -40,7 +40,7 @@ struct static_array * init_static_array(int capacity) {
             array -> array = (int*) malloc(capacity * sizeof(int));
             array -> pointer = -1;
             array -> capacity = capacity;
-            array -> memory = sizeof(array -> array);
+            array -> memory = capacity * sizeof(int);
             array -> used_memory = 0;
             array -> available_memory = array -> memory - array -> used_memory;
             printf("\tSUCCESS: static_array initialized with capacity[%d].\n", capacity);
@@ -48,4 +48,18 @@ struct static_array * init_static_array(int capacity) {
             return array;
         }
     }
+}
+
+struct static_array * insert_head(struct static_array *array, int data) {
+    printf("\ninsert_head(%d) called -->\n", data);
+    if (array -> pointer == -1) {
+        array -> pointer++;
+        array -> array[0] = data;
+        array -> number_of_elements++;
+        array -> used_memory = array -> number_of_elements * sizeof(int);
+        array -> memory = array -> capacity * sizeof(int);
+        array -> available_memory = array -> memory - array -> used_memory;
+    }
+    print_static_array_struct(array);
+    return array;
 }

@@ -19,5 +19,10 @@ int main(int argc, char* argv[]) {
     */
     struct static_array *array = init_static_array(4);
 
+    /*
+        TESTING function insert_head(struct static_array *array, int data)
+    */
+    array = insert_head(array, 2);
+
     return EXIT_SUCCESS;
 }
