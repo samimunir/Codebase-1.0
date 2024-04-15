@@ -46,11 +46,25 @@ struct static_array * init_static_array(int capacity) {
             array -> used_memory = 0;
             array -> available_memory = array -> memory - array -> used_memory;
             array -> payload = (float) array -> used_memory / (float) array -> memory;
-            printf("\tSUCCESS: static_array initialized with capacity[%d].\n", capacity);
+            printf("\tSUCCESS: static_array initialized with capacity[%d].\n", array -> capacity);
             print_static_array_struct(array);
             return array;
         }
     }
+}
+
+struct static_array * clear_static_array(struct static_array *array) {
+    printf("\nclear_static_array() called -->\n");
+    free(array -> array);
+    array -> array = (int*) malloc(array -> capacity * sizeof(int));
+    array -> pointer = -1;
+    array -> number_of_elements = 0;
+    array -> used_memory = 0;
+    array -> available_memory = array -> memory - array -> used_memory;
+    array -> payload = (float) array -> used_memory / (float) array -> memory;
+    printf("\tSUCCESS: static_array cleared/reset to capacity[%d].\n", array -> capacity);
+    print_static_array_struct(array);
+    return array;
 }
 
 struct static_array * insert_head(struct static_array *array, int data) {

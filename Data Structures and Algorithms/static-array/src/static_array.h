@@ -11,4 +11,6 @@ struct static_array {
 
 struct static_array * init_static_array(int capacity);
 
+struct static_array * clear_static_array(struct static_array *array);
+
 struct static_array * insert_head(struct static_array *array, int data);

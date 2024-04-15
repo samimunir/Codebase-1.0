@@ -28,5 +28,10 @@ int main(int argc, char* argv[]) {
     array = insert_head(array, 63); // case 3...
     array = insert_head(array, -1); // error
 
+    /*
+        TESTING function clear_static_array(struct static_array *array)
+    */
+    array = clear_static_array(array);
+
     return EXIT_SUCCESS;
 }
