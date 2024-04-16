@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
     /*
         TESTING function clear_static_array(struct static_array *array)
     */
-    array = clear_static_array(array);
+    array = clear_static_array(array, 0);
 
     /*
         TESTING function insert_tail(struct static_array *array, int data)
@@ -41,6 +41,15 @@ int main(int argc, char* argv[]) {
     array = insert_tail(array, 7); // case 2...
     array = insert_tail(array, 63);
     array = insert_tail(array, -1); // error
+
+    /*
+        TESTING function remove_head(struct static_array *array)
+    */
+    array = remove_head(array); // case 1...
+    array = remove_head(array); // case 1...
+    array = remove_head(array);
+    array = remove_head(array); // case 2
+    array = remove_head(array); // error
 
     return EXIT_SUCCESS;
 }

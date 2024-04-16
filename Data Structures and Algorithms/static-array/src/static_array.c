@@ -1,6 +1,7 @@
 #include "static_array.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void print_static_array(int *array, int capacity) {
     printf("[ ");
@@ -53,8 +54,7 @@ struct static_array * init_static_array(int capacity) {
     }
 }
 
-struct static_array * clear_static_array(struct static_array *array) {
-    printf("\nclear_static_array() called -->\n");
+struct static_array * clear_static_array(struct static_array *array, int format_display) {
     free(array -> array);
     array -> array = (int*) malloc(array -> capacity * sizeof(int));
     array -> pointer = -1;
@@ -62,8 +62,16 @@ struct static_array * clear_static_array(struct static_array *array) {
     array -> used_memory = 0;
     array -> available_memory = array -> memory - array -> used_memory;
     array -> payload = (float) array -> used_memory / (float) array -> memory;
-    printf("\tSUCCESS: static_array cleared/reset to capacity[%d].\n", array -> capacity);
-    print_static_array_struct(array);
+    if (format_display == 0) {
+        printf("\nclear_static_array() called -->\n");
+        printf("\tSUCCESS: static_array cleared/reset to capacity[%d].\n", array -> capacity);
+        print_static_array_struct(array);
+    } else if (format_display == 1) {
+        printf("\tSUCCESS: static_array cleared/reset to capacity[%d].\n", array -> capacity);
+        print_static_array_struct(array);
+    } else {
+        //
+    }
     return array;
 }
 
@@ -101,7 +109,35 @@ struct static_array * insert_head(struct static_array *array, int data) {
                 array -> memory = array -> capacity * sizeof(int);
                 array -> available_memory = array -> memory - array -> used_memory;
                 array -> payload = (float) array -> used_memory / (float) array -> memory;
+                printf("\nHERE\n");
             }
+        }
+    }
+    print_static_array_struct(array);
+    return array;
+}
+
+struct static_array * remove_head(struct static_array *array) {
+    printf("\nremove_head() called -->\n");
+    if (array -> pointer == -1) {
+        printf("--<ERROR>-- cannot remove from empty/null static array.\n");
+    } else {
+        printf("Successfully removed %d from the head of static array.\n", array -> array[0]);
+        if (array -> pointer == 0) {
+            array = clear_static_array(array, 2);
+        } else {
+            array -> pointer--;
+            for (int i = 0; i <= array -> pointer; i++) {
+                array -> array[i] = array -> array[i + 1];
+            }
+            for (int i = array -> pointer + 1; i < array -> capacity; i++) {
+                array -> array[i] = 0;
+            }
+            array -> number_of_elements--;
+            array -> used_memory = array -> number_of_elements * sizeof(int);
+            array -> memory = array -> capacity * sizeof(int);
+            array -> available_memory = array -> memory - array -> used_memory;
+            array -> payload = (float) array -> used_memory / (float) array -> memory;
         }
     }
     print_static_array_struct(array);
