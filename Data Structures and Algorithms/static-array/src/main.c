@@ -45,11 +45,24 @@ int main(int argc, char* argv[]) {
     /*
         TESTING function remove_head(struct static_array *array)
     */
-    array = remove_head(array); // case 1...
+    array = remove_head(array); // case 1
     array = remove_head(array); // case 1...
     array = remove_head(array);
     array = remove_head(array); // case 2
     array = remove_head(array); // error
+
+    /*
+        TESTING function remove_tail(struct static_array *array)
+    */
+    array = insert_head(array, 2);
+    array = insert_tail(array, 11);
+    array = insert_head(array, 7);
+    array = insert_tail(array, 63);
+    array = remove_tail(array); // case 1
+    array = remove_tail(array); // case 1...
+    array = remove_tail(array);
+    array = remove_tail(array); // case 2
+    array = remove_tail(array); // error
 
     return EXIT_SUCCESS;
 }

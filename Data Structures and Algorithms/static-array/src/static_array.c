@@ -21,9 +21,9 @@ void print_static_array_struct(struct static_array *array) {
         printf("\tpointer: %d\n", array -> pointer);
         printf("\tcapacity: %d\n", array -> capacity);
         printf("\t# elements: %d\n", array -> number_of_elements);
-        printf("\ttotal memory: %d bytes\n", array -> memory);
-        printf("\tused memory: %d bytes\n", array -> used_memory);
-        printf("\tavail memory: %d bytes\n", array -> available_memory);
+        printf("\t\ttotal memory: %d bytes\n", array -> memory);
+        printf("\t\tused memory: %d bytes\n", array -> used_memory);
+        printf("\t\tavail memory: %d bytes\n", array -> available_memory);
         printf("\tpayload: %.2f\n", array -> payload);
     }
 }
@@ -109,7 +109,6 @@ struct static_array * insert_head(struct static_array *array, int data) {
                 array -> memory = array -> capacity * sizeof(int);
                 array -> available_memory = array -> memory - array -> used_memory;
                 array -> payload = (float) array -> used_memory / (float) array -> memory;
-                printf("\nHERE\n");
             }
         }
     }
@@ -161,6 +160,28 @@ struct static_array * insert_tail(struct static_array *array, int data) {
             array -> pointer++;
             array -> array[array -> pointer] = data;
             array -> number_of_elements++;
+            array -> used_memory = array -> number_of_elements * sizeof(int);
+            array -> memory = array -> capacity * sizeof(int);
+            array -> available_memory = array -> memory - array -> used_memory;
+            array -> payload = (float) array -> used_memory / (float) array -> memory;
+        }
+    }
+    print_static_array_struct(array);
+    return array;
+}
+
+struct static_array * remove_tail(struct static_array *array) {
+    printf("\nremove_tail() called -->\n");
+    if (array -> pointer == -1) {
+        printf("--<ERROR>-- cannot remove from empty/null static array.\n");
+    } else {
+        printf("Successfully removed %d from the tail of static array.\n", array -> array[array -> pointer]);
+        if (array -> pointer == 0) {
+            array = clear_static_array(array, 2);
+        } else {
+            array -> pointer--;
+            array -> array[array -> pointer + 1] = 0;
+            array -> number_of_elements--;
             array -> used_memory = array -> number_of_elements * sizeof(int);
             array -> memory = array -> capacity * sizeof(int);
             array -> available_memory = array -> memory - array -> used_memory;
