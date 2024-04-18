@@ -191,3 +191,14 @@ struct static_array * remove_tail(struct static_array *array) {
     print_static_array_struct(array);
     return array;
 }
+
+struct static_array * replace_data_at_index(struct static_array *array, int index, int data) {
+    printf("\nreplace_data_at_index(%d, %d) called -->\n", index, data);
+    if (index < 0 || index >= array -> capacity) {
+        printf("--<ERROR>-- cannot replace data[%d] at invalid index[%d].\n", data, index);
+    } else {
+        array -> array[index] = data;
+    }
+    print_static_array_struct(array);
+    return array;
+}

@@ -64,5 +64,17 @@ int main(int argc, char* argv[]) {
     array = remove_tail(array); // case 2
     array = remove_tail(array); // error
 
+    /*
+        TESTING function replace_data_at_index(struct static_array *array, int index, int data)
+    */
+    array = clear_static_array(array, 0);
+    array = insert_head(array, 2);
+    array = insert_head(array, 11);
+    array = insert_head(array, 7);
+    array = replace_data_at_index(array, 0, 1);
+    array = replace_data_at_index(array, 1, 2);
+    array = replace_data_at_index(array, 2, 3);
+    array = insert_tail(array, 4);
+
     return EXIT_SUCCESS;
 }

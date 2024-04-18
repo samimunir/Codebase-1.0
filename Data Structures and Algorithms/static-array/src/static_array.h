@@ -20,3 +20,5 @@ struct static_array * remove_head(struct static_array *array);
 struct static_array * insert_tail(struct static_array *array, int data);
 
 struct static_array * remove_tail(struct static_array *array);
+
+struct static_array * replace_data_at_index(struct static_array *array, int index, int data);
