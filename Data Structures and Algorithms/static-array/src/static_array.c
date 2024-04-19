@@ -37,10 +37,14 @@ struct static_array * init_static_array(int capacity) {
         printf("\ninit_static_array(%d) called -->\n", capacity);
         struct static_array *array = (struct static_array *) malloc(sizeof(struct static_array));
         if (array == NULL) {
-            printf("\t--<ERROR>-- failed to allocate memory for static_array with capacity[%d].\n", capacity);
+            printf("\t--<ERROR>-- failed to allocate memory for static_array structure with capacity[%d].\n", capacity);
             return NULL;
         } else {
             array -> array = (int*) malloc(capacity * sizeof(int));
+            if (array -> array == NULL) {
+                printf("\t--<ERROR>-- failed to allocate memory for static_array with capacity[%d].\n", capacity);
+                return NULL;
+            }
             array -> pointer = -1;
             array -> capacity = capacity;
             array -> memory = capacity * sizeof(int);
@@ -57,6 +61,10 @@ struct static_array * init_static_array(int capacity) {
 struct static_array * clear_static_array(struct static_array *array, int format_display) {
     free(array -> array);
     array -> array = (int*) malloc(array -> capacity * sizeof(int));
+    if (array -> array == NULL) {
+        printf("\t--<ERROR>-- failed to reinitialize static_array with default capacity.\n");
+        return NULL;
+    }
     array -> pointer = -1;
     array -> number_of_elements = 0;
     array -> used_memory = 0;

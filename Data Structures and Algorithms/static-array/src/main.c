@@ -76,5 +76,11 @@ int main(int argc, char* argv[]) {
     array = replace_data_at_index(array, 2, 3);
     array = insert_tail(array, 4);
 
+    array = clear_static_array(array, 0);
+    array = insert_tail(array, 2);
+    array = insert_tail(array, 3);
+    array = insert_head(array, 1);
+    array = insert_tail(array, 4);
+
     return EXIT_SUCCESS;
 }
