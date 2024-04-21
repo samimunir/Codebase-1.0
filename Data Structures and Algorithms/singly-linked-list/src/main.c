@@ -13,6 +13,8 @@
 
 int main(int argc, char* argv[]) {
     printf("singly-linked-list (implementation in C)\n");
+
+    struct singly_linked_list *linked_list = initialize_linked_list();
     
     return EXIT_SUCCESS;
 }
