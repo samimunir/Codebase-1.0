@@ -8,3 +8,4 @@ Sami Munir | Rutgers University | Codebase 1.0
 * focus-time-app - *HTML, CSS, JavaScript*
 ### 2. Data Structures and Algorithms
 * static-array - *C implementation*
+* singly-linked-list - *C implementation*
