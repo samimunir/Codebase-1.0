@@ -1,6 +1,6 @@
 struct linked_list_node {
     int data;
-    struct linkedlist_node *next;
+    struct linked_list_node *next;
 };
 
 struct singly_linked_list {

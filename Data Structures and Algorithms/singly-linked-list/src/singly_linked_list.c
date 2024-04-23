@@ -3,6 +3,27 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+void print_linked_list(struct linked_list_node *head) {
+    if (head == NULL) {
+        printf("\tHEAD is either NULL or not initialized.\n");
+        return;
+    } else if (head -> next == NULL) {
+        printf("\tHEAD -> %d -> NULL\n", head -> data);
+        return;
+    } else {
+        printf("\tHEAD -> ");
+        struct linked_list_node *current_node = head;
+        while (current_node != NULL) {
+            printf("%d -> ", current_node -> data);
+            current_node = current_node -> next;
+        }
+        printf("NULL\n");
+        return;
+    }
+}
+
+void print_linked_list_struct(struct singly_linked_list *linked_list) {}
+
 struct singly_linked_list * initialize_linked_list() {
     printf("\ninitialize_linked_list() called -->\n");
     struct linked_list_node *head = (struct linked_list_node *) malloc(sizeof(struct linked_list_node));
