@@ -34,7 +34,7 @@ void print_linked_list_struct(struct singly_linked_list *linked_list) {
     printf("\t\ttotal memory: %d bytes\n", linked_list -> memory);
     printf("\t\tused memory: %d bytes\n", linked_list -> used_memory);
     printf("\t\tavail memory: %d bytes\n", linked_list -> available_memory);
-    printf("\tpayload: %.2f\n", linked_list -> payload);
+    printf("\tpayload: %.4f\n", linked_list -> payload);
     return;
 }
 
@@ -57,10 +57,34 @@ struct singly_linked_list * initialize_linked_list() {
     linked_list -> memory = MAX_MEMORY;
     linked_list -> used_memory = linked_list -> number_of_elements * linked_list -> linked_list_node_memory;
     linked_list -> available_memory = linked_list -> memory - linked_list -> used_memory;
-    linked_list -> payload = 0.0;
+    linked_list -> payload = (float) linked_list -> used_memory / (float) linked_list -> memory;
 
     printf("\tlinked_list successfully initialzed.\n");
     print_linked_list_struct(linked_list);
     
+    return linked_list;
+}
+
+struct singly_linked_list * insert_head(struct singly_linked_list *linked_list, int data) {
+    printf("\ninsert_head(%d) called -->\n", data);
+    if (linked_list -> head -> next == NULL && linked_list -> number_of_elements == 0) {
+        linked_list -> head -> data = data;
+        linked_list -> number_of_elements++;
+        linked_list -> memory = MAX_MEMORY;
+        linked_list -> used_memory = linked_list -> number_of_elements * linked_list -> linked_list_node_memory;
+        linked_list -> available_memory = linked_list -> memory - linked_list -> used_memory;
+        linked_list -> payload = (float) linked_list -> used_memory / (float) linked_list -> memory;
+    } else {
+        struct linked_list_node *new_head = (struct linked_list_node*) malloc(sizeof(struct linked_list_node));
+        new_head -> data = data;
+        new_head -> next = linked_list -> head;
+        linked_list -> head = new_head;
+        linked_list -> number_of_elements++;
+        linked_list -> memory = MAX_MEMORY;
+        linked_list -> used_memory = linked_list -> number_of_elements * linked_list -> linked_list_node_memory;
+        linked_list -> available_memory = linked_list -> memory - linked_list -> used_memory;
+        linked_list -> payload = (float) linked_list -> used_memory / (float) linked_list -> memory;
+    }
+    print_linked_list_struct(linked_list);
     return linked_list;
 }
